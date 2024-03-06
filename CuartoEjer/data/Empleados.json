@@ -1,0 +1,16 @@
+{
+    "123": {
+        "id": "123",
+        "nombre": "ewqas",
+        "cargo": "sasasa",
+        "salario": 1800000.0,
+        "colilla": {
+            "mesPagado": "marzo",
+            "fechaPago": "1 abril 2024",
+            "valorTotalHrasExtras": 27500.0,
+            "cuotaPrestamo": 300000.0,
+            "descuentoxCafeteria": 5000.0,
+            "totalAPagar": 1402500.0
+        }
+    }
+}

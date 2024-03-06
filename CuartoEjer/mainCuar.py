@@ -12,7 +12,6 @@
 # diasTrabajados
 # horasExtras
 # valorDia
-
 # descuentoxCafeteria
 # cuotaPrestamo
 
@@ -34,16 +33,17 @@
 # 1. Total pagado por concepto de nomina
 # 2. Consultar la colilla de pago de un determinado empleado.
 
-
+#valordia=sALARIO/30
 
 import os
+
 import modulos.corefiles as core
 
-ruta=ruta="CuartoEjercicio/data/Empleados.json"
+ruta="Empleados.json"
 Empleados={}
 
 core.Checkfile("Empleados.json",Empleados)
-core.ReadFile("Empleados.json")
+Empleados=core.ReadFile("Empleados.json")
 
 titulo="""
 +++++++++++++++++++++++++
@@ -52,41 +52,63 @@ titulo="""
 """
 print(titulo)
 
-id=input('Ingrese el ID del empleado')
-nombre=input('Ingrese el nombre del empleado')
-cargo=input('Ingrese el cargo del empleado')
-salario=input('Ingrese el salario del empleado')
+menu="""
+    1.Agregar empleados
+    2.Leer Colillas
+"""
+print(menu)
+op=int(input(('Seleccione la opcion')))
+if op==1:
+    id=input('Ingrese el ID del empleado')
+    nombre=input('Ingrese el nombre del empleado')
+    cargo=input('Ingrese el cargo del empleado')
 
+    salario=float(input('Ingrese el salario del empleado'))
+    diasTrabajados=float(input('Ingrese los dias trabajados por el empleado'))
+    horasExtras=float(input('Ingrese las horas extras trabajadas por el empleado'))
+    descuentoxCafeteria=float(input('Ingrese el valor del descuento por cafeteria del empleado'))
+    cuotaPrestamo=float(input('Ingrese el valor de la cuota del prestamo del empleado'))
 
+    ValorDia=salario/30
+    valorTotalHrasExtras=horasExtras*5500
+    ValorMes=ValorDia*diasTrabajados
+    Descontar=descuentoxCafeteria+cuotaPrestamo
+    ValorPagar=ValorMes+valorTotalHrasExtras
+    totalAPagar=ValorPagar-Descontar
 
-mesPagado=input('Ingrese  del empleado')
-fechaPago=input('Ingrese  del empleado')
-sueldoBase=input('Ingrese  del empleado')
-valorTotalHrasExtras=input('Ingrese  del empleado')
-cuotaPrestamo=input('Ingrese  del empleado')
-descuentoxCafeteria=input('Ingrese  del empleado')
-totalAPagar=input('Ingrese  del empleado')
+    mesPagado=input('Ingrese el mes que le pagara al empleado')
+    fechaPago=input('Ingrese la fecha en la que se efectua el pago al empleado')
+    print(f'El valor a pagar por {horasExtras} horas extras trabajadas es de {valorTotalHrasExtras} ')
+    print(f'El total a pagar al empleado es: ${totalAPagar}')
 
-Empleado={
-    'id':id,
-    'nombre':nombre,
-    'cargo':cargo, 
-    'salario':salario,
-    'colilla':{
-        'mesPagado':mesPagado,
-        'fechaPago':fechaPago,
-        'sueldoBase':sueldoBase,
-        'valorTotalHrasExtras':valorTotalHrasExtras,
-        'cuotaPrestamo':cuotaPrestamo,
-        'descuentoxCafeteria':descuentoxCafeteria,
-        'totalAPagar':totalAPagar
+    Empleado={
+        'id':id,
+        'nombre':nombre,
+        'cargo':cargo, 
+        'salario':salario,
+        'colilla':{
+            'mesPagado':mesPagado,
+            'fechaPago':fechaPago,
+            'valorTotalHrasExtras':valorTotalHrasExtras,
+            'cuotaPrestamo':cuotaPrestamo,
+            'descuentoxCafeteria':descuentoxCafeteria,
+            'totalAPagar':totalAPagar
+        }
     }
-}
+    Empleados.update({id:Empleado})
+    core.UpdateFile(ruta,Empleados)
+    print (Empleados)
+elif op==2:
+    def ValidarKey(Empleados,id):
+        try:
+            x=str(input(''))
+            Empleados[x]
+            return x
+        except KeyError:
+            print('Elemento no existente')
+            return ValidarKey(Empleados,id)
 
-
-
-
-
-Empleado.update({id:Empleado})
-core.UpdateFile(Empleados)
-print (Empleados)
+    print('Ingrese el ID del empleado')
+    id=ValidarKey(Empleados,"Empleado")
+    Empleado=Empleados[id]['colilla']
+    print(Empleado)

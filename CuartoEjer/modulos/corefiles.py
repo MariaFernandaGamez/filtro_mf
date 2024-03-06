@@ -1,7 +1,7 @@
 import os
 import json
-BASE_DATA="CuartoEjercicio/data/"
-ruta="CuartoEjercicio/data/Empleados.json"
+BASE_DATA="CuartoEjer/data/"
+ruta="CuartoEjer/data/Empleados.json"
 
 def Checkfile(Archivo,diccionario):
     if(not(os.path.isfile(BASE_DATA+Archivo))):
