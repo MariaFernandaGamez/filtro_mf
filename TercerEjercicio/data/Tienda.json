@@ -1,0 +1,18 @@
+{
+    "123.0": {
+        "id": 123.0,
+        "nombre": "jabon",
+        "valorUnitario": 20000.0,
+        "stockmin": 40.0,
+        "stockmax": 100.0,
+        "valorVenta": 25000.0
+    },
+    "456.0": {
+        "id": 456.0,
+        "nombre": "leche",
+        "valorUnitario": 19000.0,
+        "stockmin": 50.0,
+        "stockmax": 120.0,
+        "valorVenta": 26000.0
+    }
+}
