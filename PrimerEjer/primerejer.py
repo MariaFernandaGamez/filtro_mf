@@ -7,8 +7,15 @@
 
 import os 
 from tabulate import tabulate
-import validaciones as val
 
+
+def ValINT():
+    try:
+        x=int(input(''))
+        return x
+    except ValueError:
+        print('Dato invalido, intentelo de nuevo')
+        return ValINT()
 
 titulo="""
     +++++++++++++++++++++++++++++++++++
@@ -19,7 +26,7 @@ titulo="""
 print(titulo)
 
 print('Ingrese una cantidad de pesos')
-pesos=val.ValINT()
+pesos=ValINT()
 #=val.ValFloat()
 
 Ayan=pesos/26.30
@@ -28,9 +35,10 @@ pesosAeuro=pesos*4279
 eurosApesos=pesos/4279
 
 print('Ingrese una cantidad de euros')
-euros=val.ValINT()
+euros=ValINT()
 
 eurosApesos=euros*4279
+
 
 
 print(f'${pesos} pesos equivalen a ${Ayan} yanes')
